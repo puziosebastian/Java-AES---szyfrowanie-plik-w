@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.RadioMenuItem?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.MainController">
+    <top>
+        <GridPane BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <MenuButton text="User">
+                    <items>
+                        <MenuItem fx:id="newUserMenuItem" onAction="#openUserCreator" text="Add new User" />
+                    </items>
+                </MenuButton>
+                <MenuBar GridPane.rowIndex="1">
+                    <menus>
+                        <Menu text="File">
+                            <items>
+                                <MenuItem fx:id="openMenuItem" onAction="#openFileChooser" text="Open" />
+                                <MenuItem fx:id="exitButtonItem" onAction="#exitButtonAction" text="Exit" />
+                            </items>
+                        </Menu>
+                        <fx:define>
+                            <ToggleGroup fx:id="cipherMode"/>
+                        </fx:define>
+                        <Menu fx:id="cipherModeMenu" text="Operation mode">
+                            <items>
+                                <RadioMenuItem fx:id="checkMenuItemECB" toggleGroup="$cipherMode" text="ECB"/>
+                                <RadioMenuItem fx:id="checkMenuItemCBC" toggleGroup="$cipherMode" text="CBC"/>
+                                <RadioMenuItem fx:id="checkMenuItemCFB" toggleGroup="$cipherMode" text="CFB"/>
+                                <RadioMenuItem fx:id="checkMenuItemOFB" toggleGroup="$cipherMode" text="OFB"/>
+                            </items>
+                        </Menu>
+                        <fx:define>
+                            <ToggleGroup fx:id="keySize"/>
+                        </fx:define>
+                        <Menu fx:id="keySizeMenu" text="Session key size">
+                            <items>
+                                <RadioMenuItem fx:id="checkMenuItem16" toggleGroup="$keySize" text="16"/>
+                                <RadioMenuItem fx:id="checkMenuItem24" toggleGroup="$keySize" text="24"/>
+                                <RadioMenuItem fx:id="checkMenuItem32" toggleGroup="$keySize" text="32"/>
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            </children>
+        </GridPane>
+    </top>
+    <center>
+
+    </center>
+    <right>
+
+    </right>
+    <left>
+    </left>
+    <bottom>
+        <VBox alignment="CENTER" prefHeight="120.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10">
+                    <children>
+                        <Button fx:id="encButtonItem" onAction="#ENCInit" text="Encrypt" />
+                        <Label fx:id="filePathLabelItem" maxWidth="28.0" text="Label" textFill="#f5f2f2"/>
+                        <Button fx:id="decButtonItem" onAction="#DECWindows" text="Decrypt" />
+                    </children>
+                </HBox>
+                <ProgressBar fx:id="progressBar" minHeight="20.0" prefWidth="200.0" progress="0.0">
+                    <VBox.margin>
+                        <Insets bottom="10.0" />
+                    </VBox.margin>
+                </ProgressBar>
+            </children>
+        </VBox>
+    </bottom>
+    <center>
+        <VBox alignment="TOP_CENTER" prefHeight="331.0" prefWidth="640.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label text="Selected file:">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </Label>
+                <ImageView fx:id="fileImageItem" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </ImageView>
+                <Label fx:id="fileNameLabelItem" text="no file selected" />
+                <Label text="Choose users:" />
+                <ListView fx:id="userListItem" maxHeight="100.0" maxWidth="200.0" minHeight="50.0" />
+                <Label text="Name file as:">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </Label>
+                <TextField fx:id="fileNameTextField" maxWidth="320.0">
+                    <VBox.margin>
+                        <Insets bottom="10.0" />
+                    </VBox.margin>
+                </TextField>
+            </children>
+            <BorderPane.margin>
+                <Insets top="20.0" />
+            </BorderPane.margin>
+        </VBox>
+    </center>
+    <opaqueInsets>
+        <Insets />
+    </opaqueInsets>
+</BorderPane>
